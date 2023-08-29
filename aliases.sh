@@ -10,3 +10,8 @@ gcom() {
 gp() {
   git push origin
 }
+
+gnew() {
+  git checkout -b "$1"
+  git push --set-upstream origin "$1"
+}
