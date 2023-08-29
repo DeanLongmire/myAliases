@@ -1,0 +1,1 @@
+alias gogit='cd /git'
