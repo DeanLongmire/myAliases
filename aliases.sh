@@ -26,3 +26,9 @@ _co_completion() {
     COMPREPLY=($(compgen -W "$branches" -- "${COMP_WORDS[1]}"))
 }
 complete -F _co_completion co
+
+gup() {
+  git fetch --prune && git branch -r | awk -F/ '$2 == "origin" && !seen[$3]++ && !system("git rev-parse --quiet --verify " $3) {print $3}' | xargs -I {} git branch -d {}
+}
+
+
