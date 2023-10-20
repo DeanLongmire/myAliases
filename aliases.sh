@@ -3,7 +3,8 @@ co() {
 }
 
 gogit() {
-  'cd /git'
+  cd
+  cd ../../git
 }
 
 gcom() {
@@ -29,6 +30,17 @@ complete -F _co_completion co
 
 gup() {
   git fetch --prune && git branch -r | awk -F/ '$2 == "origin" && !seen[$3]++ && !system("git rev-parse --quiet --verify " $3) {print $3}' | xargs -I {} git branch -d {}
+}
+
+rb() {
+  current_dir="$(basename "$PWD")"
+
+  if [ -d "$current_dir" ]; then
+    cd "$current_dir"
+    cargo run
+  else
+    echo "No project folder was found: $current_dir"
+  fi
 }
 
 
