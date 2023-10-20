@@ -29,7 +29,7 @@ _co_completion() {
 complete -F _co_completion co
 
 gup() {
-  git fetch --prune && git branch -r | awk -F/ '$2 == "origin" && !seen[$3]++ && !system("git rev-parse --quiet --verify " $3) {print $3}' | xargs -I {} git branch -d {}
+  git pull --rebase && git remote update origin --prune && git fetch -p -t && for branch in $(git for-each-ref --format \'%(refname) %(upstream:track)\' refs/heads | awk \'$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}\'); do git branch -D $branch; done
 }
 
 rb() {
