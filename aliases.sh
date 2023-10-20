@@ -38,6 +38,7 @@ rb() {
   if [ -d "$current_dir" ]; then
     cd "$current_dir"
     cargo run
+    cd ../
   else
     echo "No project folder was found: $current_dir"
   fi
