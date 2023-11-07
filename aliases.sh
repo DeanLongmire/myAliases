@@ -7,6 +7,16 @@ gogit() {
   cd ../../git
 }
 
+gocs() {
+  cd
+  cd ../../git/cs$1
+}
+
+gop() {
+  cd
+  cd ../../git/Projects/$1
+}
+
 gcom() {
   git add .
   git commit -m "$1"
@@ -44,4 +54,14 @@ cr() {
   fi
 }
 
+ct() {
+  current_dir="$(basename "$PWD")"
 
+  if [ -d "$current_dir" ]; then
+    cd "$current_dir"
+    cargo test
+    cd ../
+  else
+    echo "No project folder was found: $current_dir"
+  fi
+}
