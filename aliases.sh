@@ -15,6 +15,9 @@ gocs() {
 gop() {
   cd
   cd ../../git/Projects/$1
+  if [ $1 != NULL ]; then 
+    code .
+  fi
 }
 
 gcom() {
