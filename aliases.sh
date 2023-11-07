@@ -15,7 +15,7 @@ gocs() {
 gop() {
   cd
   cd ../../git/Projects/$1
-  if [ $1 != NULL ]; then 
+  if [ $1 ]; then 
     code .
   fi
 }
