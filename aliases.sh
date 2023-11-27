@@ -45,6 +45,11 @@ gup() {
   git pull --rebase && git remote update origin --prune && git fetch -p -t && for branch in $(git for-each-ref --format "%(refname) %(upstream:track)" refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
 }
 
+gopen() {
+  url=$(git config --get remote.origin.url)
+  wslview $url
+}
+
 cr() {
   current_dir="$(basename "$PWD")"
 
