@@ -50,6 +50,7 @@ gopen() {
   wslview $url
 }
 
+# Cargo Run
 cr() {
   current_dir="$(basename "$PWD")"
 
@@ -62,6 +63,7 @@ cr() {
   fi
 }
 
+# Cargo Test
 ct() {
   current_dir="$(basename "$PWD")"
 
@@ -72,4 +74,20 @@ ct() {
   else
     echo "No project folder was found: $current_dir"
   fi
+}
+
+# Cargo Format
+cf() {
+  current_directory=$(pwd)
+  current_directory_name=$(basename "$current_directory")
+
+  # Set the directory path
+  directory="$current_directory_name/src"
+
+  # Use find to recursively search for files and print their names
+  find "$directory" -type f | while read -r file; do
+    # Store the file name in a variable
+    filename=$file
+    rustfmt $filename
+  done
 }
