@@ -78,16 +78,13 @@ ct() {
 
 # Cargo Format
 cf() {
-  current_directory=$(pwd)
-  current_directory_name=$(basename "$current_directory")
+  current_dir="$(basename "$PWD")"
 
-  # Set the directory path
-  directory="$current_directory_name/src"
-
-  # Use find to recursively search for files and print their names
-  find "$directory" -type f | while read -r file; do
-    # Store the file name in a variable
-    filename=$file
-    rustfmt $filename
-  done
+  if [ -d "$current_dir" ]; then
+    cd "$current_dir"
+    cargo fmt
+    cd ../
+  else
+    echo "No project folder was found: $current_dir"
+  fi
 }
