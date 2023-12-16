@@ -7,6 +7,10 @@ gogit() {
   cd ../../git
 }
 
+st() {
+  sudo hwclock -s
+}
+
 gocs() {
   cd
   cd ../../git/cs$1
