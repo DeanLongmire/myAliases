@@ -33,6 +33,18 @@ gp() {
   git push origin
 }
 
+gpf() {
+  git push origin -f
+}
+
+gst() {
+  git stash
+}
+
+gsp() {
+  git stash pop
+}
+
 gnew() {
   git checkout -b "$1"
   git push --set-upstream origin "$1"
