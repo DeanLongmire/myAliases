@@ -13,7 +13,11 @@ st() {
 
 gocs() {
   cd
-  cd ../../git/cs$1
+  if [ $1 ]; then
+    cd ../../git/cs$1
+  else
+    cd ../../git
+  fi
 }
 
 gop() {
@@ -22,6 +26,14 @@ gop() {
   if [ $1 ]; then 
     code .
   fi
+}
+
+gri() {
+  git rebase -i HEAD~$1
+}
+
+grm() {
+  git rebase main
 }
 
 gcom() {
