@@ -7,6 +7,19 @@ gogit() {
   cd ../../git
 }
 
+open() {
+  cd /git/$1
+  code .
+  cd
+}
+
+_open_completion() {
+  local directories
+  directories=$(find /git -maxdepth 1 -type d -printf "%P\n")
+  COMPREPLY=($(compgen -W "$directories" -- "${COMP_WORDS[1]}"))
+}
+complete -F _open_completion open
+
 st() {
   sudo hwclock -s
 }
